@@ -12,5 +12,11 @@ describe(('Async 테스트'), () => {
 		return fetchProduct().then((obj) => {
 			expect(obj).toEqual({ item: 'milk', price: 200 });
 		});
-	})
+	});
+
+	it('async-await', async () => {
+		const product = await fetchProduct();
+
+		expect(product).toEqual({ item: 'milk', price: 200 });
+	});
 });
