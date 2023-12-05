@@ -7,4 +7,10 @@ describe(('Async 테스트'), () => {
 			done();
 		});
 	});
+
+	it('async-return', () => {
+		return fetchProduct().then((obj) => {
+			expect(obj).toEqual({ item: 'milk', price: 200 });
+		});
+	})
 });
