@@ -14,6 +14,7 @@ export class Calculator {
 	}
 
 	add(number: number) {
+		if (number > 100) throw new Error('value가 100보다 큼');
 		this.value += number;
 	}
 

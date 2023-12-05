@@ -1,7 +1,7 @@
 import { Calculator } from "../src/Calculator"
 
 describe('Calculator 테스트코드 작성할겁니다', () => {
-	let cal;
+	let cal: Calculator;
 
 	beforeEach(() => {
 		cal = new Calculator();
@@ -29,6 +29,16 @@ describe('Calculator 테스트코드 작성할겁니다', () => {
 
 		expect(cal.value).toBe(5);
 	});
+
+	it('value가 100보다 크다면 에러를 던져야됌', () => {
+		const whenFunction = () => {
+			cal.add(101);
+		};
+
+		// Then
+		expect(whenFunction).toThrow('value가 100보다 큼');
+	});
+
 
 	it('divide는 나누기요', () => {
 		cal.set(8);
