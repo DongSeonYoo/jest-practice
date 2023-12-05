@@ -1,34 +1,47 @@
+type Node = {
+	readonly value: number;
+	readonly next: Node | null;
+}
+
 export class Stack {
-	private _array: any[];
+	// private _array: any[];
+	private _size: number;
+	private head: Node | null;
+
 	constructor() {
-		this._array = [];
+		this._size = 0;
+		this.head = null;
 	}
 
-	get array(): any {
-		return this._array;
+	size() {
+		return this._size;
 	}
 
-	isEmpty(): boolean {
-		return this._array.length === 0;
+	push(value: number) {
+		const node = { value, next: this.head };
+		this.head = node;
+		this._size++;
 	}
 
-	checkLength(): number {
-		return this.array.length;
-	}
-
-	push(number: number): void {
-		this.array.push(number);
-	}
-
-	pop(): void {
-		if (this.isEmpty()) {
+	pop() {
+		if (this.head === null) {
 			throw new Error('스택 벼있음');
 		}
 
-		this.array.pop();
+		const node = this.head;
+		this.head = node.next;
+		this._size--;
+	}
+
+	isEmpty() {
+		return this.head === null;
 	}
 
 	peek() {
-		return this.array[this.checkLength() - 1];
+		if (this.head === null) {
+			throw new Error('스택 벼있음');
+		}
+
+		return this.head.value;
 	}
 }

@@ -8,7 +8,7 @@ describe('Stack을 테스트한다', () => {
 	});
 
 	it('stack의 사이즈를 체크한다', () => {
-		expect(stack.checkLength()).toBe(0);
+		expect(stack.size()).toBe(0);
 	});
 
 	it('stack의 push는 최상위에 데이터를 쌓는다', () => {
@@ -19,12 +19,11 @@ describe('Stack을 테스트한다', () => {
 		stack.push(number);
 
 		// then
-		expect(stack.checkLength()).toBe(1);
+		expect(stack.size()).toBe(1);
 	});
 
 	it('stack의 pop은 최근 데이터 하나를 삭제한다', () => {
 		// given
-		const expectedStack = [1, 2];
 
 		// when
 		stack.push(1);
@@ -34,7 +33,8 @@ describe('Stack을 테스트한다', () => {
 		stack.pop();
 
 		// then
-		expect(stack.array).toEqual(expectedStack);
+		// expect(stack.array).toEqual(expectedStack);
+		expect(stack.size()).toBe(2);
 	});
 
 	it('stack이 비어있으면 true, 아니면 false를 반환한다', () => {
@@ -66,4 +66,17 @@ describe('Stack을 테스트한다', () => {
 
 		expect(stack.peek()).toBe(1);
 	});
+
+	it('stack의 peek은 stack이 비어있을 때 에러를 던진다', () => {
+		// given
+		const expectedError = new Error('스택 벼있음');
+
+		// when
+		const stackFunction = () => {
+			stack.peek()
+		};
+
+		// then
+		expect(stackFunction).toThrow(expectedError);
+	})
 });
